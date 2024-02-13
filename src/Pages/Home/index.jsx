@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import Card from "../../components/Card";
 import { getProducts } from "../../helpers/getProducts";
 import ProductDetail from "../../components/ProductDetail";
+import CheckoutSideMenu from "../../components/CheckoutSideMenu";
 
 function Home() {
 
@@ -10,14 +11,14 @@ function Home() {
 
   useEffect( () => {
     getProducts().then( (data) => {
-      setItems(data.products);
+      setItems(data);
     });
   }, []);
 
   return (
     <Layout>
       <h1>Home</h1>
-      <div className='grid gap-4 grid-cols-3 w-full max-w-screen-lg'>
+      <div className='grid gap-4 grid-cols-3 w-full max-w-screen-lg items-center justify-items-center'>
         {
           items?.map( (item) => (
             <Card 
@@ -28,6 +29,7 @@ function Home() {
         }
       </div>
       <ProductDetail />
+      <CheckoutSideMenu />
     </Layout>
   );
 }

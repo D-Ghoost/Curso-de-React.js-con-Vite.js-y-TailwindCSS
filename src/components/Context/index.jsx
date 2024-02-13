@@ -7,12 +7,37 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) =>{
 
     const [count, setCount] = useState(0);
+    // Products -> Open . Close
+    const [ isProductDetailOpen, setIsProductDetailOpen ] = useState(false);
+    const openProductDetail = () => setIsProductDetailOpen(true);
+    const closeProductDetail = () => setIsProductDetailOpen(false);
+
+    // Product Detail
+    const [productToShow, setProductToShow] = useState({});
+
+    //Shopping card
+    const [cardProducts, setCardProducts] = useState([]);
+
+    // Checkout Side Menu -> Open . Close
+    const [ isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen ] = useState(false);
+    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
+    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
 
     return(
         <AppContext.Provider 
             value={{
                 count,
-                setCount
+                setCount,
+                openProductDetail,
+                closeProductDetail,
+                isProductDetailOpen,
+                productToShow,
+                setProductToShow,
+                cardProducts,
+                setCardProducts,
+                isCheckoutSideMenuOpen,
+                openCheckoutSideMenu,
+                closeCheckoutSideMenu,
             }}
         >
             { children }

@@ -226,4 +226,100 @@ const Card = ({ title, price, images, category }) =>{
     </li>
 ```
 
+## Detalle de producto
 
+- Creamos un componente llamado `ProductDetail` que contendra la informacion del producto
+- Creamos un archivo llamado `ProductDetail.jsx` en la carpeta `components`
+
+```jsx
+const ProductDetail = () => {
+    return(
+        <aside className='w-[360px] h-haside flex flex-col fixed right-0 top-[68px] border bg-white border-black rounded-lg >'>
+            <div className='flex justify-between items-center p-4 border-b'>
+                <h2 className='text-lg font-semibold'>Product Detail</h2>
+                <button className='text-2xl'>&times;</button>
+            </div>
+        </aside>
+    );
+}
+
+export default ProductDetail;
+```
+## Instalacion libreria heroicons
+- Instalamos heroicons con el comando `npm install @heroicons/react`
+- Ahora importamos el icono de x en el componente `ProductDetail`
+- Si queremos que sea solid, mini, outline, etc. podemos buscar en la documentacion de heroicons, en este caso usaremos el icono de x solid pero si queremos ponerlo
+outline solo cambiamos solid por outline
+
+```jsx
+import { XCircleIcon } from '@heroicons/react/24/solid';
+
+//...resto del componente
+
+<button className='text-2xl'>
+    <XCircleIcon className="h-6 w-6 stroke-black"/>
+</button>
+```
+
+## Mostrar y ocultar el detalle del producto
+- Vamos a crear un estado para mostrar y ocultar el detalle del producto
+- Creamos un estado isProductDetailOpen y un metodo para cambiar el estado setProductDetailOpen
+- Creamos dos funciones para mostrar y ocultar el detalle del producto
+- Las pasamos al contexto para poder consumirlas en cualquier componente
+
+## Mostrando productos en ProductDetail
+```jsx
+import React from 'react';
+import { XCircleIcon } from '@heroicons/react/24/outline'
+import { AppContext } from '../Context';
+
+const ProductDetail = () => {
+    const { isProductDetailOpen, closeProductDetail, productToShow } = React.useContext(AppContext);
+
+    // console.log(productToShow.img);
+
+    return(
+        <aside className={ ` ${ isProductDetailOpen ? 'flex' : 'hidden'} w-[360px] h-haside flex-col fixed right-0 top-[68px] border bg-white border-black rounded-lg >` }>
+            <div className='flex justify-between items-center p-4 border-b'>
+                <h2 className='text-lg font-semibold'>Product Detail</h2>
+                <button 
+                    className='text-2xl'
+                    onClick={ () => closeProductDetail() }
+                >
+                    <XCircleIcon className="h-6 w-6 stroke-black"/>
+                </button>
+                
+            </div>
+            <figure className='px-6'>
+                <img 
+                    className='w-full h-full rounded-lg' 
+                    src={ productToShow.img?.[0] } 
+                    alt={ productToShow.title }
+                />
+            </figure>
+            <p className='flex flex-col p-6'>
+                <span className='font-medium text-2xl mb-2'>${ productToShow.price }</span>
+                <span className='font-medium text-xl mb-1'>{ productToShow.title }</span>
+                <span className='font-light text-md '>{ productToShow.description }</span>
+            </p>
+        </aside>
+    );
+}
+
+export default ProductDetail;
+```
+## Agregando productos al carrito
+- Creamos un estado para almacenar los productos que se agregan al carrito
+- Creammos una funcion addProductToCart que recibe el producto que se va a agregar al carrito
+- Utilizamos el ...spread operator para agregar el producto al carrito
+```jsx
+const addProductsToCard = (productData) =>{
+        setCount(count + 1)
+        setCardProducts([...cartProducts, productData]);
+    };
+```
+- Creamos un estado para almacenar el total de productos que se agregan al carrito
+
+## SideMenu del carrito de compras
+- Creamos un componente llamado `CheckoutSideMenu` que contendra la informacion del carrito de compras
+- Podemos copiarlo del componente de detalles del producto y modificarlo

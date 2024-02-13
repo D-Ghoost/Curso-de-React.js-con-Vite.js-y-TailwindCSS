@@ -1,6 +1,7 @@
 import React from "react"
-import { AppContext } from "../Context"
+import { ShoppingCartIcon } from "@heroicons/react/24/outline"
 import { NavLink } from "react-router-dom"
+import { AppContext } from "../Context"
 
 const Navbar = () =>{
     
@@ -13,7 +14,7 @@ const Navbar = () =>{
 
 
     return(
-        <nav className='flex justify-between items-center fixed z-10 w-screen top-0 py-5 px-8 text-sm font-light'>
+        <nav className='flex justify-between items-center fixed z-10 w-screen top-0 py-5 px-8 text-sm font-light bg-white'>
             <ul className=' flex items-center gap-3'>
 
                 <li className=' font-semibold text-xl '>
@@ -98,8 +99,8 @@ const Navbar = () =>{
                         Sign In
                     </NavLink>
                 </li>
-                <li>
-                    🛒{ count }
+                <li className="flex items-center">
+                    <ShoppingCartIcon className='h-4 w-4 stroke-black mx-1' />{ count }
                 </li>
             </ul>
         </nav>
