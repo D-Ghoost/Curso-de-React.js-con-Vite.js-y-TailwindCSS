@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PlusIcon } from '@heroicons/react/24/outline' 
+import { PlusIcon, CheckIcon } from '@heroicons/react/24/outline' 
 import { AppContext } from '../Context';
 
 
 
-const Card = ({ title, price, images, category, description }) =>{
+const Card = ({ id, title, price, images, category, description }) =>{
     const { 
         count,
         setCount, 
@@ -37,6 +37,28 @@ const Card = ({ title, price, images, category, description }) =>{
         closeProductDetail();
     };
 
+    const renderIcon = () => {
+        const isInCard = cardProducts.filter( (product) => product.id == id).length > 0;
+        if(isInCard){
+            return(
+                <button 
+                    className='absolute top-0 right-0 flex justify-center items-center bg-black w-6 h-6 rounded-full m-2 p-1'
+                >
+                    <CheckIcon className='h-4 w-4 stroke-white'/>
+                </button>
+            )
+        }else{
+            return(
+                <button 
+                    className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1'
+                    onClick={ (event) => addProductsToCard(event, { id, title, price, img, category, description }) }
+                >
+                        <PlusIcon className='h-4 w-4 stroke-black'/>
+                </button>
+            )
+        }
+    }
+
     return(
         <div 
             className='bg-white cursor-pointer w-56 h-60 rounded-lg'
@@ -45,12 +67,9 @@ const Card = ({ title, price, images, category, description }) =>{
             <figure className='relative mb-3 w-full h-4/5'>
                 <span className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5'>{ category.name }</span>
                 <img className='h-40 object-cover rounded-lg ' src={ img[0].replace(/[[\]""]/g,"") } alt={ title } />
-                <button 
-                    className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1'
-                    onClick={ (event) => addProductsToCard(event, { title, price, img, category, description }) }
-                >
-                    <PlusIcon className='h-4 w-4 stroke-black'/>
-                </button>
+                {
+                    renderIcon()
+                }
             </figure>
             <p className='flex justify-between'>
                 <span className='text-sm font-light'>{ title }</span>
@@ -62,6 +81,7 @@ const Card = ({ title, price, images, category, description }) =>{
 
 
 Card.propTypes = {
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     images: PropTypes.array.isRequired,

@@ -23,7 +23,7 @@ function Home() {
           items?.map( (item) => (
             <Card 
               key={ item.id }
-              { ...item }
+              {   ...item }
             /> 
           ))
         }

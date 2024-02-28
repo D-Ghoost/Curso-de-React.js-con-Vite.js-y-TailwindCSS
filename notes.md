@@ -323,3 +323,7 @@ const addProductsToCard = (productData) =>{
 ## SideMenu del carrito de compras
 - Creamos un componente llamado `CheckoutSideMenu` que contendra la informacion del carrito de compras
 - Podemos copiarlo del componente de detalles del producto y modificarlo
+
+## Componente OrderCard
+- Creamos un componente llamado `OrderCard` que contendra la informacion de los productos que se agregan al carrito
+- Le tenemos que pasar el contexto ya que vamos a mostrar la informacion del carrito de compras
