@@ -327,3 +327,20 @@ const addProductsToCard = (productData) =>{
 ## Componente OrderCard
 - Creamos un componente llamado `OrderCard` que contendra la informacion de los productos que se agregan al carrito
 - Le tenemos que pasar el contexto ya que vamos a mostrar la informacion del carrito de compras
+
+## Eliminacion de producto de compra
+- Nos vamos al componente CheckoutSideMenu y creamos una funcion para eliminar el producto del carrito
+- llamamos la funcion handleDelete que recibe el id del producto que se va a eliminar
+- Utilizamos el metodo filter para eliminar el producto del carrito
+
+```jsx  
+const handleDelete = ( id ) =>{
+        const filteredProducts = cardProducts.filter( (product) => product.id !== id);
+    }
+``` 
+- Luego seteamos el estado del carrito con los productos filtrados es decir con setCardProducts(filteredProducts)
+
+- Pasamos los parametros solicitados por las respectivas funciones a los componentes que los necesiten
+
+## Suma total de productos en el carrito
+- Creamos una carpeta llamada utils

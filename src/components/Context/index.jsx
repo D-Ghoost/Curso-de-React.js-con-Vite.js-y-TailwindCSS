@@ -18,6 +18,9 @@ export const AppProvider = ({ children }) =>{
     //Shopping card
     const [cardProducts, setCardProducts] = useState([]);
 
+    // Shopping Card . order
+    const [order, setOrder] = useState([]);
+
     // Checkout Side Menu -> Open . Close
     const [ isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen ] = useState(false);
     const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
@@ -38,6 +41,8 @@ export const AppProvider = ({ children }) =>{
                 isCheckoutSideMenuOpen,
                 openCheckoutSideMenu,
                 closeCheckoutSideMenu,
+                order,
+                setOrder
             }}
         >
             { children }
