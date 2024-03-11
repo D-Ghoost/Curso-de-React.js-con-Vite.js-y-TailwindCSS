@@ -343,4 +343,11 @@ const handleDelete = ( id ) =>{
 - Pasamos los parametros solicitados por las respectivas funciones a los componentes que los necesiten
 
 ## Suma total de productos en el carrito
-- Creamos una carpeta llamada utils
+- Creamos una carpeta llamada utils para sumar el total de los productos en el carrito
+- creamos un archivo index.js y creamos la funcion llamada totalPrices que recibe el carrito de compras
+
+## Flujo de crear una orden
+-Creamos nuevo estado para almacenar las ordenes
+- Creamos un handleCheckout que recibe el carrito de compras
+- Creamos un objeto que contendra la informacion de la orden
+- Setemos el estado de la orden con la informacion de la orden
